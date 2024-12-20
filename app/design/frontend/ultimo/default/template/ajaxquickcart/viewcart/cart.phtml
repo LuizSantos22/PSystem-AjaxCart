@@ -1,0 +1,148 @@
+
+<div class="ps-content">
+    <div class="cart">
+        <div class="page-title title-buttons">
+            <div class="pscart-header d-flex align-items-center justify-content-between pr-3 bg-fbfbfb mb-3">
+                <!-- Close Button -->
+                <div class="ps-col-icon">
+                    <a href="javascript:void(0);" 
+                       title="<?php echo $this->__('Close'); ?>" 
+                       class="btn-link" 
+                       id="edit-cart" 
+                       onclick="PS.layer.manager.close(); window.location.reload();">
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Cart Title -->
+                <div class="ps-col-title text-center">
+                    <h5><strong><?php echo $this->__('MEU') ?></strong></h5>
+                    <h5><?php echo $this->__('CARRINHO') ?></h5>
+                </div>
+                
+                <!-- Edit Button -->
+                <div class="ps-col-edit">
+                    <a href="javascript:void(0);" 
+                       title="<?php echo $this->__('Editar'); ?>" 
+                       class="btn-link" 
+                       id="edit-cart" 
+                       onclick="setLocation('<?php echo $this->getUrl('checkout/cart/') ?>');">
+                        <i class="ic ic-edit2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+        <?php echo $this->getChildHtml('form_before') ?>
+        
+        <form action="<?php echo $this->getUrl('checkout/cart/updatePost') ?>" method="post" id="cart-form">
+            <fieldset>
+                <div class="scrollable-area">
+                    <div class="ps-content-area">
+                        <table id="shopping-cart-table" class="ps-data-table ps-cart-table flex-table">
+                            <tbody>
+                                <?php foreach($this->getItems() as $_item): ?>
+                                    <tr class="first last odd">
+                                        <td class="first">
+                                            <?php if ($_item->getProduct()->getThumbnailUrl()): ?>
+                                                <img src="<?php echo $_item->getProduct()->getThumbnailUrl() ?>" alt="<?php echo $this->escapeHtml($_item->getProduct()->getName()) ?>" class="product-image" style="width: 75px; height: 75px;" />
+                                            <?php endif; ?>
+                                        </td>
+                                        <td class="last">
+                                            <div class="ps-product-details">
+                                                <span class="ps-product-name"> 
+                                                    <?php if ($_item->getProduct()->getProductUrl()): ?>
+                                                        <a href="<?php echo $_item->getProduct()->getProductUrl() ?>"><?php echo $this->escapeHtml($_item->getProduct()->getName()) ?></a>
+                                                    <?php else: ?>
+                                                        <?php echo $this->escapeHtml($_item->getProduct()->getName()) ?>
+                                                    <?php endif; ?>
+                                                </span>
+                                                <p class="ps-product-price"><?php echo $this->helper('checkout')->formatPrice($_item->getRowTotal()) ?></p>
+                                                
+                                                <div class="product-quantity-wrapper">
+                                                    <button class="btn-quantity minus" type="button" onclick="removeFromCart()">-</button> <!-- Minus button -->
+                                                    <input type="number" class="input-quantity" value="<?php echo $_item->getQty(); ?>" min="1" />
+                                                    <div class="" onclick="productAddToCartForm.submit(this)">+</div> <!-- Plus button with submit function -->
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2" class="a-right">
+                                <div class="buttons-container" style="padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center;">
+    <div class="ps-subtotal" style="width: 100%;"> <!-- Added inline style to match the width -->
+        <div class="ps-subtotal-wrapper">
+            <div class="ps-subtotal-container">
+                <span class="ps-label"><?php echo $this->__('Total:') ?></span>
+                <span class="ps-price">
+                    <?php 
+                    $grandTotal = 0; // Initialize grand total
+
+                    // Loop through each item in the cart
+                    foreach ($this->getItems() as $_item): 
+                        $itemPrice = $_item->getProduct()->getPrice(); // Get item price
+                        $itemQty = $_item->getQty(); // Get item quantity
+                        $grandTotal += $itemPrice * $itemQty; // Calculate total for this item
+                    endforeach; 
+
+                    // Display the formatted grand total
+                    echo Mage::helper('checkout')->formatPrice($grandTotal); 
+                    ?>
+                </span>
+            </div>
+            <?php if ($_totalInclTax = $this->getGrandTotalInclTax()): ?>
+                <br />
+                <span class="ps-incl-tax">(<?php echo Mage::helper('checkout')->formatPrice($_totalInclTax) ?> <?php echo Mage::helper('tax')->getIncExcText(true) ?>)</span>
+            <?php endif; ?>
+        </div>
+
+        <button type="button" title="<?php echo $this->__('My Cart') ?>" class="button btn-viewcart" onclick="setLocation('<?php echo $this->getUrl('checkout/onepage/index') ?>');">
+            <span><?php echo $this->__('Finalizar Pedido') ?></span>
+        </button>
+        <?php if($this->getContinueShoppingUrl()): ?>
+            <button type="button" title="<?php echo $this->__('Continue Shopping') ?>" class="button btn-continue" onclick="PS.layer.manager.close(); window.location.reload();">
+                <span><?php echo $this->__('Continue Shopping') ?></span>
+            </button>
+        <?php endif; ?>
+    </div>
+</div>
+
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div> <!-- End of content-area -->
+            </fieldset>
+        </form>
+        
+        <script type="text/javascript">
+            function removeFromCart() {
+    // Assuming you have a hidden input field to track the quantity
+    const quantityInput = document.getElementById('quantity');
+    let currentQuantity = parseInt(quantityInput.value);
+
+    if (currentQuantity > 0) { // Check if there's an item to remove
+        quantityInput.value = currentQuantity - 1; // Decrement the quantity
+
+        // If the quantity is now 0, you might want to handle that case
+        if (quantityInput.value <= 0) {
+            quantityInput.value = 0; // Set to 0 to avoid negative values
+            // Optionally, you can remove the item from the cart here
+            // For example, you might want to submit a form to remove the item
+            // productRemoveFromCartForm.submit(); // Uncomment if you have a form for removal
+        }
+
+        // Submit the form to update the cart
+        productAddToCartForm.submit(); // Submit the form to update the cart
+    }
+}
+        </script>
+    </div>
+</div>
