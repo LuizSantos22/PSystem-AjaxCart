@@ -1,0 +1,308 @@
+.pascalsystem-content .ajaxemptycart,
+.pascalsystem-content .cart {
+    position: fixed; /* Keep the cart fixed */
+    top: 0; /* Position it to the top */
+    right: 0; /* Position it to the right */
+    width: 350px; /* Fixed width for the sliding cart */
+    height: 100vh; /* Full height of the viewport */
+    overflow: hidden; /* Prevent overflow on the cart itself */
+    z-index: 9999; /* Ensure this is high enough */
+    background: #ffffff; /* Background color */
+    padding: 7px; /* Padding */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow for the cart */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack children vertically */
+}
+
+.pascalsystem-content .cart .scrollable-area {
+    overflow-y: hidden; /* Hide scrollbars by default */
+    height: calc(100vh - 350px); /* Default height for larger screens */
+    transition: overflow-y 0.3s ease; /* Smooth transition for overflow change */
+}
+
+.pascalsystem-content .cart .scrollable-area:hover {
+    overflow-y: auto; /* Show scrollbars on hover */
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+    .pascalsystem-content .cart .scrollable-area {
+        height: calc(100vh - 200px); /* Adjust height for smaller screens */
+        overflow-y: auto; /* Always show scrollbars on mobile */
+    }
+}
+
+.elevio-modal {
+    z-index: 999; /* Set this lower than the sliding cart */
+}
+
+.bi-bag-check {
+    position: relative;
+    top: -2px;
+}
+
+.pascalsystem-content .cart .btn-viewcart {
+    float: left;
+}
+
+.pascalsystem-content .product-view-layer {
+    width: 30%;
+}
+
+#pascalsystem-cart .cart-collaterals {
+    display: none;
+}
+
+/* Styling price above continue shopping button */
+.ps-subtotal-wrapper {
+    background-color: #F8F8F8; /* Light grey background */
+    border-radius: 5px; /* Slightly rounded edges */
+    padding: 10px; /* Add some padding inside the wrapper */
+    margin: 10px 0; /* Optional: Add some margin around the wrapper */
+}
+
+.ps-label {
+    float: left; /* Align label to the left */
+    font-weight: bold; /* Make the label bold */
+    margin-right: 150px; /* Add some space between label and price */
+}
+
+.ps-price {
+    float: right; /* Align price to the right */
+    font-weight: bold; /* Make the price bold */
+    color: #333; /* Change color if needed */
+}
+
+.ps-incl-tax {
+    font-size: 0.9em; /* Slightly smaller font size */
+    color: #666; /* Lighter color for tax text */
+}
+
+/* Clearfix to contain floated elements */
+.ps-subtotal-container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.pascalsystem-content .cart .buttons-container {
+    position: absolute; /* Position absolute to keep it fixed at the bottom */
+    bottom: 10px; /* Distance from the bottom of the cart */
+    left: 0; /* Align to the left */
+    right: 0; /* Align to the right */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Space between buttons */
+    padding: 10px; /* Padding for the buttons container */
+    background: #ffffff; /* Background for the buttons container */
+    z-index: 1; /* Ensure buttons are above other content */
+}
+
+.pascalsystem-content .cart .buttons-container .button {
+    width: 100%; /* Full width for buttons */
+    text-align: center;
+    font-size: 12px; /* Font size for buttons */
+    margin: 5px 0; /* Margin between buttons */
+    padding: 8px 15px; /* Padding for buttons */
+    background-color: #f0f0f0; /* Background color for buttons */
+    border: 0; /* No border */
+    border-radius: 5px; /* Slightly rounded edges */
+    color: #333; /* Text color */
+    text-transform: uppercase; /* Uppercase text */
+}
+
+/* DECREASE FONT OF PRODUCT TITLE INTO THE SLIDING CART */
+.cart-table .product-name {
+    font-size: 1em; /* Set font size for product name */
+    font-family: inherit; /* Inherit font family */
+}
+
+/* Arrange cart header where is arrow, cart title and edit text */
+.pscart { /* Header of the pascalsystem slidecart */
+    width: 355px; /* Set width to 355px */
+    height: 72px; /* Set height to 72px */
+}
+
+.col-icon,
+.col-title,
+.col-edit {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center items vertically */
+    margin-left: 7px; /* Adjust this value to move it further left */
+}
+
+.col-icon {
+    background-color: #f0f0f0; /* Light grey background for the icon column */
+    padding: 15px; /* Optional: Add padding for better spacing */
+    margin: 0; /* Remove margin to ensure it fills the column */
+    margin-left: -9px; /* Adjust this value to move it further left */
+    border-radius: 4px; /* Optional: Add border-radius for rounded corners */
+    flex: 0 0 auto; /* Ensure it doesn't shrink or grow */
+    height: 100%; /* Ensure it takes the full height of the parent */
+}
+
+.col-title h5 {
+    margin: 0 5px; /* Adjust margin for spacing */
+}
+
+.col-edit { /* Responsible for the "edit text" on the slidecart header */
+    margin: 0 35px; /* Adjust margin for spacing */
+    padding-top: 5px; /* Move it vertically up or down */
+}
+
+/* REPLACE ORIGINAL ICON "ic ic-edit2" FROM ajaxquickcart/viewcart/cart.phtml BY FEATHER ICONS SVG */
+.ic.ic-edit2 {
+    display: none; /* Hide the original icon */
+}
+
+.ic.ic-edit2:before {
+    content: ''; /* Clear any existing content */
+}
+
+.ic.ic-edit2 {
+    display: inline-block; /* Ensure the icon is inline */
+    margin: 0 0 0 75px; /* Adjust margin for spacing (move left margin to 75px) */
+    margin-top: -5px; /* Adjust up this value as needed */
+    width: 18px; /* Set the width */
+    height: 18px; /* Set the height */
+    background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpath d=\'M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7\'/%3E%3Cpath d=\'M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z\'/%3E%3C/svg%3E');
+    background-size: contain; /* Scale the SVG to fit */
+    background-repeat: no-repeat; /* Prevent repeating */
+    background-position: center; /* Center the SVG */
+}
+
+/* Flexbox for cart items */
+.d-flex {
+    display: flex;
+    align-items: center; /* Align items vertically centered */
+    flex-wrap: nowrap; /* Prevent wrapping to a new line */
+    min-width: 350px; /* Set a minimum width for the flex container */
+}
+
+.d-flex .img {
+    margin-right: 10px; /* Space between the image and product details */
+}
+
+.product-details {
+    flex-grow: 1; /* Allow product details to take the remaining space */
+    min-width: 0; /* Prevent overflow */
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 767px) {
+    .d-flex {
+        flex-direction: row; /* Ensure items are in a row */
+    }
+
+    .product-details {
+        flex: 1; /* Allow product details to take the remaining space */
+        min-width: 0; /* Prevent overflow */
+    }
+}
+
+/* Additional styles */
+.btn-remove {
+    color: red; /* Color for the remove icon */
+    cursor: pointer; /* Pointer cursor for clickable items */
+}
+
+.btn-remove:hover {
+    opacity: 0.7; /* Hover effect */
+}
+
+.product-name {
+    margin-bottom: 5px; /* Space below product name */
+}
+
+.item-options {
+    margin-bottom: 10px; /* Space below item options */
+}
+
+/* RESIZE "TD FIRST" AND "TD LAST" TABLES ON PRODUCT DETAILS AND THUMBNAIL */
+
+/* Set widths for the product thumbnail and details */
+.data-table tr td.first {
+    width: 30%; /* Set width for the first cell (thumbnail) */
+}
+
+.data-table tr td.last {
+    width: 70%; /* Set width for the last cell (details) */
+}
+
+/* Ensure the table layout is fixed to respect the widths */
+.data-table {
+    table-layout: fixed; /* Use fixed layout to respect column widths */
+    width: 100%; /* Ensure the table takes full width */
+}
+
+/* REMOVE ULTIMO'S TABLE LINE ON PRODUCT TABLE DETAILS AND THUMBNAIL */
+
+/* Ensure your custom styles are loaded after Ultimo's styles */
+
+/* Remove borders from the product table details and thumbnail */
+#shopping-cart-table {
+    border-collapse: separate; /* Change to separate to allow individual cell borders */
+    border-spacing: 0; /* Reset any spacing */
+}
+
+/* Remove borders from the odd rows */
+.data-table tr.odd td, 
+.data-table tr.odd th {
+    border: none !important; /* Ensure no borders are shown */
+}
+
+/* Specific rules for the last cell in each row */
+.data-table tr td:last-child, 
+.data-table tr th:last-child {
+    border: none !important; /* Force the right border to be invisible */
+    border-bottom: none !important; /* Force the bottom border to be invisible */
+}
+
+/* Remove any border below the last row */
+.cart-table tfoot td.last {
+    border-bottom: none !important; /* Force the border to be invisible */
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 1200px) {
+    .pascalsystem-content .ajaxemptycart,
+    .pascalsystem-content .cart {
+        width: 50%; /* Adjust width for larger screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .pascalsystem-content .ajaxemptycart,
+    .pascalsystem-content .cart {
+        width: 80%; /* Adjust width for medium screens */
+    }
+
+    .pascalsystem-content .cart .buttons-container {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .pascalsystem-content .cart .buttons-container .button {
+        font-size: 10px; /* Smaller font size for medium screens */
+        padding: 6px 12px; /* Adjust padding for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .pascalsystem-content .ajaxemptycart,
+    .pascalsystem-content .cart {
+        width: 90%; /* Full width for smaller screens */
+    }
+
+    .pascalsystem-content .cart .buttons-container {
+        gap: 5px;
+    }
+
+    .pascalsystem-content .cart .buttons-container .button {
+        font-size: 8px; /* Even smaller font size for small screens */
+        padding: 5px 10px; /* Adjust padding for small screens */
+    }
+}
+    margin-bottom: 

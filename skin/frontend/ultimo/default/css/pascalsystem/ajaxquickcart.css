@@ -1,3 +1,4 @@
+/* Estilos gerais para o conteúdo do carrinho */
 .ps-content {
     --primary-color: #333;
     --secondary-color: #f0f0f0;
@@ -12,71 +13,84 @@
     --font-size-large: 16px;
 }
 
+/* Estilos para o carrinho fixo à direita */
 .ps-content .ajaxemptycart,
 .ps-content .cart {
-    position: fixed; /* Keep the cart fixed */
-    top: 0; /* Position it to the top */
-    right: 0; /* Position it to the right */
-    width: 350px; /* Fixed width for the sliding cart */
-    height: 100vh; /* Full height of the viewport */
-    overflow: hidden; /* Prevent overflow on the cart itself */
-    z-index: 9999; /* Ensure this is high enough */
-    background: var(--light-background); /* Background color */
-    padding: 7px; /* Padding */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow for the cart */
-    display: flex; /* Use flexbox for layout */
-    flex-direction: column; /* Stack children vertically */
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 350px;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 9999;
+    background: var(--light-background);
+    padding: 7px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
 }
 
+/* Overlay para bloquear o conteúdo por trás do carrinho */
+.ps-content .cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998; /* Posicionado abaixo do carrinho */
+    display: none; /* Inicialmente escondido */
+}
+
+/* Área rolável dentro do carrinho */
 .ps-content .cart .scrollable-area {
-    overflow-y: hidden; /* Hide scrollbars by default */
-    height: calc(100vh - 350px); /* Default height for larger screens */
-    transition: overflow-y 0.3s ease; /* Smooth transition for overflow change */
+    overflow-y: hidden;
+    height: calc(100vh - 350px);
+    transition: overflow-y 0.3s ease;
 }
 
 .ps-content .cart .scrollable-area:hover {
-    overflow-y: auto; /* Show scrollbars on hover */
+    overflow-y: auto;
 }
 
-/* Adjustments for smaller screens */
+/* Ajustes para telas menores */
 @media (max-width: 768px) {
     .ps-content .cart .scrollable-area {
-        height: calc(100vh - 200px); /* Adjust height for smaller screens */
-        overflow-y: auto; /* Always show scrollbars on mobile */
+        height: calc(100vh - 200px);
+        overflow-y: auto;
     }
 }
 
-/* Buttons "Finalizar Pedido" and "Continuar Comprando" */
-
+/* Botões de finalização de pedido e continuar comprando */
 .ps-content .btn-viewcart {
     float: left;
-    background-color: #28A745 !important; /* Primary green color */
-    color: #fff !important; /* White text */
-    border: none !important; /* Remove border */
-    padding: 10px 20px; /* Add some padding */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 16px; /* Font size */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s ease; /* Smooth color transition */
+    background-color: #28A745 !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .ps-content .cart .btn-viewcart:hover {
-    background-color: #218838 !important; /* Slightly darker green on hover */
+    background-color: #218838 !important;
 }
 
 .ps-content .btn-continue {
     float: left;
-    background-color: #2c85c8 !important; /* Primary green color */
-    color: #fff !important; /* White text */
-    border: none !important; /* Remove border */
-    padding: 10px 20px; /* Add some padding */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 16px; /* Font size */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s ease; /* Smooth color transition */
+    background-color: #2c85c8 !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-
+/* Ajustes para visualização do produto */
 .ps-content .product-view-layer {
     width: 30%;
 }
@@ -85,117 +99,80 @@
     display: none;
 }
 
-
-
 .ps-label {
-    float: left; /* Align label to the left */
-    font-weight: bold; /* Make the label bold */
-    margin-right: 150px; /* Add some space between label and price */
+    float: left;
+    font-weight: bold;
+    margin-right: 150px;
 }
 
 .ps-price {
-    float: right; /* Align price to the right */
-    font-weight: bold; /* Make the price bold */
-    color: var(--primary-color); /* Change color if needed */
+    float: right;
+    font-weight: bold;
+    color: var(--primary-color);
 }
 
 .ps-incl-tax {
-    font-size: 0.9em; /* Slightly smaller font size */
-    color: var(--text-color); /* Lighter color for tax text */
+    font-size: 0.9em;
+    color: var(--text-color);
 }
 
-/* Quantity Input Wrapper */
+/* Estilo para o input de quantidade de produto */
 .product-quantity-wrapper {
-    display: flex; /* Use flexbox for layout */
-    align-items: center; /* Center items vertically */
-    border: 1px solid var(--border-color); /* Light grey border */
-    border-radius: 5px; /* Rounded corners */
-    padding: 0; /* Remove padding to make it smaller */
-    width: 100px; /* Set width of the wrapper to 100px for better fit */
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 0;
+    width: 100px;
 }
 
-/* Button Styles */
 .btn-quantity {
-    background-color: transparent; /* Make background transparent */
-    color: var(--primary-color); /* Dark gray text */
+    background-color: transparent;
+    color: var(--primary-color);
     cursor: pointer;
-    border: none; /* Remove border from buttons */
-    font-size: var(--font-size-large); /* Define font size for buttons */
-    padding: 0; /* Remove padding for buttons to minimize size */
-    width: 30px; /* Set a fixed width for buttons */
-    height: 30px; /* Set a fixed height for buttons */
-    display: flex; /* Use flexbox for centering */
-    align-items: center; /* Center text vertically */
-    justify-content: center; /* Center text horizontally */
-    transition: background-color 0.2s ease; /* Smooth background transition */
+    border: none;
+    font-size: var(--font-size-large);
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
 }
 
-/* Button hover effect */
 .btn-quantity:hover {
-    background-color: var(--secondary-color); /* Change background on hover */
+    background-color: var(--secondary-color);
 }
 
-/* Input Field Styles */
 .input-quantity {
-    width: 40px; /* Adjust width for better fit */
-    text-align: center; /* Center text in input */
-    border: none; /* Remove border from input */
-    font-size: var(--font-size-medium); /* Use medium font size */
-    padding: 2px; /* Add padding to input */
-    margin: 0; /* Remove margin for spacing */
-    background-color: var(--light-background); /* Match background with buttons */
-    outline: none; /* Remove outline on focus */
+    width: 40px;
+    text-align: center;
+    border: none;
+    font-size: var(--font-size-medium);
+    padding: 2px;
+    margin: 0;
+    background-color: var(--light-background);
+    outline: none;
 }
 
-/* Remove outline and box shadow on focus */
-.input-quantity:focus {
-    outline: none; /* Ensure no outline appears */
-    box-shadow: none; /* Remove any box shadow */
-    border: none; /* Ensure no border appears */
-}
-
-/* Adjust the layout of the quantity input */
-.product-quantity-wrapper {
-    justify-content: center; /* Center items to make it smaller */
-}
-
-/* Add specific styles for the "+" and "-" buttons */
-.btn-quantity.minus {
-    margin-right: 0; /* Remove space between "-" button and input */
-}
-
-.btn-quantity.plus {
-    margin-left: 0; /* Remove space between "+" button and input */
-}
-
-/* Optional: Add some spacing between the buttons and input */
-.btn-quantity.minus {
-    margin-right: 5px; /* Add space between "-" button and input */
-}
-
-.btn-quantity.plus {
-    margin-left: 5px; /* Add space between "+" button and input */
-}
-
-/* Styling for price above continue shopping button */
+/* Estilo para o preço e o total */
 .ps-subtotal-wrapper {
-    background-color: var(--dark-background); /* Background color */
-    border-radius: 5px; /* Rounded edges */
-    padding: 10px; /* Inner padding */
-    margin: 10px 0; /* Outer margin */
+    background-color: var(--dark-background);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
 }
 
-/* Contain floated elements (only if floats are used elsewhere) */
 .ps-subtotal-container::after {
     content: "";
     display: table;
     clear: both;
 }
 
-/* General adjustments for .ps-subtotal */
 .ps-subtotal {
     position: absolute;
-    bottom: 20px; /* Adjust this value to move the container up */
+    bottom: 20px;
     left: 0;
     width: 100%;
     box-sizing: border-box;
@@ -203,330 +180,187 @@
     padding: 20px;
 }
 
-/* Flexbox layout for .ps-subtotal-container */
 .ps-subtotal-container {
-    display: flex; /* Enable flexbox */
-    justify-content: space-between; /* Space items evenly */
-    align-items: center; /* Align items vertically */
-    flex-wrap: wrap; /* Allow items to wrap if needed */
+    display: flex;
+    justify-content: space-between; /* Alinha label e preço em lados opostos */
+    align-items: center; /* Alinha os itens verticalmente */
+    flex-wrap: nowrap; /* Impede a quebra de linha */
 }
 
-/* Mobile responsiveness */
+.ps-label {
+    text-align: left; /* Alinha o label à esquerda */
+    flex: 1; /* Ocupa o espaço restante */
+    margin-right: 5px; /* Espaçamento entre label e preço */
+}
+
+.ps-price {
+    text-align: right; /* Alinha o preço à direita */
+    flex-shrink: 0; /* Impede que o preço encolha */
+}
+
+/* Ajustes para dispositivos móveis */
 @media (max-width: 768px) {
-    .ps-subtotal-wrapper {
-        padding: 10px; /* Keep consistent padding */
+    .ps-subtotal-container {
+        flex-wrap: nowrap; /* Mantém o layout horizontal */
+        justify-content: space-between; /* Garante alinhamento oposto */
     }
-}
-
 
     .ps-label {
-        margin-right: 0; /* Remove right margin on mobile */
-        flex: 1; /* Allow label to take flexible space */
+        flex: 1; /* Garante que o label ocupe o espaço restante */
+        text-align: left; /* Alinha à esquerda */
     }
 
     .ps-price {
-        flex: 1; /* Allow price to take flexible space */
-        text-align: right; /* Align price to the right */
+        flex-shrink: 0; /* Impede o encolhimento */
+        text-align: right; /* Garante alinhamento à direita */
+        margin-left: auto; /* Empurra o preço para o lado oposto do label */
     }
 
     .ps-button {
-        font-size: var(--font-size-medium); /* Adjust button font size */
-        padding: 10px 15px; /* Adjust button padding */
-        width: 100%; /* Make buttons full width */
-        margin-top: 5px; /* Add space between buttons */
+        font-size: var(--font-size-medium);
+        padding: 10px 15px;
+        width: 100%;
+        margin-top: 5px;
     }
 }
 
+
+/* Botões de ação no rodapé do carrinho */
 .ps-content .cart .buttons-container {
-    position: absolute; /* Position absolute to keep it fixed at the bottom */
-    bottom: 10px; /* Distance from the bottom of the cart */
-    left: 0; /* Align to the left */
-    right: 0; /* Align to the right */
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px; /* Space between buttons */
-    padding: 10px; /* Padding for the buttons container */
-    background: var(--light-background); /* Background for the buttons container */
-    z-index: 1; /* Ensure buttons are above other content */
+    gap: 10px;
+    padding: 10px;
+    background: var(--light-background);
+    z-index: 1;
 }
 
 .ps-content .cart .buttons-container .button {
-    width: 100%; /* Full width for buttons */
+    width: 100%;
     text-align: center;
-    font-size: var(--font-size-small); /* Font size for buttons */
-    margin: 5px 0; /* Margin between buttons */
-    padding: 8px 15px; /* Padding for buttons */
-    background-color: var(--secondary-color); /* Background color for buttons */
-    border: 0; /* No border */
-    border-radius: 5px; /* Slightly rounded edges */
-    color: var(--primary-color); /* Text color */
-    text-transform: uppercase; /* Uppercase text */
+    font-size: var(--font-size-small);
+    margin: 5px 0;
+    padding: 8px 15px;
+    background-color: var(--secondary-color);
+    border: 0;
+    border-radius: 5px;
+    color: var(--primary-color);
+    text-transform: uppercase;
 }
 
-/* DECREASE FONT OF PRODUCT TITLE INTO THE SLIDING CART */
+/* Ajustes para a exibição do título do produto no carrinho */
 .ps-cart-table .product-name {
-    font-size: var(--font-size-medium); /* Set font size for product name */
-    font-family: inherit; /* Inherit font family */
+    font-size: var(--font-size-medium);
+    font-family: inherit;
 }
 
-/* Arrange cart header where is arrow, cart title and edit text */
-.pscart { /* Header of the ps slidecart */
-    width: 355px; /* Set width to 355px */
-    height: 72px; /* Set height to 72px */
+/* Estilo para o cabeçalho do carrinho deslizante */
+.pscart {
+    width: 355px;
+    height: 72px;
 }
 
 .ps-col-icon,
-.ps-col-title,
-.ps-col-edit {
-    display: flex; /* Use flexbox for alignment */
-    align-items: center; /* Center items vertically */
-    margin-left: 7px; /* Adjust this value to move it further left */
+.ps-col-title {
+    display: flex;
+    align-items: center;
+    margin-left: 7px;
 }
 
 .ps-col-icon {
-    background-color: var(--secondary-color); /* Light grey background for the icon column */
-    padding: 15px; /* Optional: Add padding for better spacing */
-    margin: 0; /* Remove margin to ensure it fills the column */
-    margin-left: -9px; /* Adjust this value to move it further left */
-    border-radius: 4px; /* Optional: Add border-radius for rounded corners */
-    flex: 0 0 auto; /* Ensure it doesn't shrink or grow */
-    height: 100%; /* Ensure it takes the full height of the parent */
-}
-
-.ps-col-title h5 {
-    margin: 0 5px; /* Adjust margin for spacing */
-}
-
-.ps-col-edit { /* Responsible for the "edit text" on the slidecart header */
-    margin: 0 35px; /* Adjust margin for spacing */
-    padding-top: 5px; /* Move it vertically up or down */
-}
-
-/* REPLACE ORIGINAL ICON "ic ic-edit2" FROM ajaxquickcart/viewcart/cart.phtml BY FEATHER ICONS SVG */
-.ic.ic-edit2 {
-    display: none; /* Hide the original icon */
-}
-
-.ic.ic-edit2:before {
-    content: ''; /* Clear any existing content */
-}
-
-.ic.ic-edit2 {
-    display: inline-block; /* Ensure the icon is inline */
-    margin: 0 0 0 75px; /* Adjust margin for spacing (move left margin to 75px) */
-    margin-top: -5px; /* Adjust up this value as needed */
-    width: 18px; /* Set the width */
-    height: 18px; /* Set the height */
-    background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpath d=\'M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7\'/%3E%3Cpath d=\'M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z\'/%3E%3C/svg%3E');
-    background-size: contain; /* Scale the SVG to fit */
-    background-repeat: no-repeat; /* Prevent repeating */
-    background-position: center; /* Center the SVG */
-}
-
-/* Flexbox for cart items */
-.d-flex {
-    display: flex;
-    align-items: center; /* Align items vertically centered */
-    flex-wrap: nowrap; /* Prevent wrapping to a new line */
-    min-width: 350px; /* Set a minimum width for the flex container */
-}
-
-.d-flex .img {
-    margin-right: 10px; /* Space between the image and product details */
-}
-
-.ps-product-details {
-    flex-grow: 1; /* Allow product details to take the remaining space */
-    min-width: 0; /* Prevent overflow */
-}
-
-/* Media Query for Mobile Devices */
-@media (max-width: 767px) {
-    .d-flex {
-        flex-direction: row; /* Ensure items are in a row */
-    }
-
-    .ps-product-details {
-        flex: 1; /* Allow product details to take the remaining space */
-        min-width: 0; /* Prevent overflow */
-    }
-}
-
-/* Additional styles */
-.btn-remove {
-    color: var(--error-color); /* Color for the remove icon */
-    cursor: pointer; /* Pointer cursor for clickable items */
-}
-
-.btn-remove:hover {
-    opacity: var(--hover-opacity); /* Hover effect */
-}
-
-.ps-product-name {
-    margin-bottom: 5px; /* Space below product name */
-}
-
-.ps-item-options {
-    margin-bottom: 10px; /* Space below item options */
-}
-
-/* RESIZE "TD FIRST" AND "TD LAST" TABLES ON PRODUCT DETAILS AND THUMBNAIL */
-
-/* Set widths for the product thumbnail and details */
-.data-table tr td.first {
-    width: 30%; /* Set width for the first cell (thumbnail) */
-}
-
-.ps-data-table tr td.last {
-    width: 70%; /* Set width for the last cell (details) */
-}
-
-/* Ensure the table layout is fixed to respect the widths */
-.ps-data-table {
-    table-layout: fixed; /* Use fixed layout to respect column widths */
-    width: 100%; /* Ensure the table takes full width */
-}
-
-/* REMOVE ULTIMO'S TABLE LINE ON PRODUCT TABLE DETAILS AND THUMBNAIL */
-
-/* Ensure your custom styles are loaded after Ultimo's styles */
-
-/* Remove borders from the product table details and thumbnail */
-#shopping-cart-table {
-    border-collapse: separate; /* Change to separate to allow individual cell borders */
-    border-spacing: 0; /* Reset any spacing */
-}
-
-/* Remove borders from the odd rows */
-.ps-data-table tr.odd td, 
-.ps-data-table tr.odd th {
-    border: none !important; /* Ensure no borders are shown */
-}
-
-/* Specific rules for the last cell in each row */
-.ps-data-table tr td:last-child, 
-.ps-data-table tr th:last-child {
-    border: none !important; /* Force the right border to be invisible */
-    border-bottom: none !important; /* Force the bottom border to be invisible */
-}
-
-/* Remove any border below the last row */
-.ps-cart-table tfoot td.last {
-    border-bottom: none !important; /* Force the border to be invisible */
-}
-
-/* Media Queries for Responsive Design */
-@media (max-width: 1200px) {
-    .ps-content .ajaxemptycart,
-    .ps-content .cart {
-        width: 50%; /* Adjust width for medium screens */
-    }
-
-    .ps-content .cart .scrollable-area {
-        height: calc(100vh - 250px); /* Adjust height for medium screens */
-    }
-
-    .ps-col-title h5 {
-        font-size: var(--font-size-large); /* Increase font size for titles */
-    }
-
-    .ps-product-name {
-        font-size: var(--font-size-medium); /* Adjust product name font size */
-    }
-
-    .btn-remove {
-        font-size: var(--font-size-small); /* Adjust font size for remove button */
-    }
-}
-
-@media (max-width: 992px) {
-    .ps-content .ajaxemptycart,
-    .ps-content .cart {
-        width: 80%; /* Adjust width for smaller screens */
-    }
-
-    .ps-content .cart .scrollable-area {
-        height: calc(100vh - 200px); /* Further adjust height for smaller screens */
-    }
-
-    .ps-col-title h5 {
-        font-size: var(--font-size-medium); /* Adjust font size for titles */
-    }
-
-    .ps-product-name {
-        font-size: var(--font-size-small); /* Decrease product name font size */
-    }
-
-    .btn-remove {
-        font-size: var(--font-size-small); /* Adjust font size for remove button */
-    }
+    background-color: var(--secondary-color);
+    padding: 15px;
+    margin-left: -9px;
+    border-radius: 4px;
+    flex: 0 0 auto;
+    height: 100%;
 }
 
 @media (max-width: 768px) {
-    .ps-content .ajaxemptycart,
+    .ps-col-icon {
+        margin-left: 8px; /* Ajuste para telas menores */
+    }
+}
+
+
+.ps-col-title h5 {
+    margin: 0 5px;
+}
+
+.ps-col-edit {
+    margin: 0; /* Remove fixed margin */
+    padding-top: 5px; /* Maintain padding for alignment */
+    margin-left: auto; /* Align to the right */
+    display: flex; /* Flexbox for child alignment */
+    align-items: center; /* Center vertically */
+    justify-content: flex-end; /* Align to the right boundary */
+}
+
+/* Substituição do ícone original de edição */
+.ic.ic-edit2 {
+    display: none;
+}
+
+.ic.ic-edit2:before {
+    content: '';
+}
+
+.ic.ic-edit2 {
+    display: inline-block;
+    width: 20px; /* Set fixed size */
+    height: 20px;
+    background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpath d=\'M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7\'/%3E%3Cpath d=\'M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z\'/%3E%3C/svg%3E');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0; /* Reset default margin */
+    transform: translateX(-15px); /* Shift slightly left without altering layout */
+}
+
+/* Layout flexível para os itens do carrinho */
+
+/* Estilo padrão para desktops */
+tr.first.last.odd td.first {
+    padding-left: 10px; /* Ajuste padrão */
+}
+
+/* Ajuste para dispositivos móveis */
+@media (max-width: 768px) {
+    tr.first.last.odd td.first {
+        padding-left: 20px; /* Valor ajustado para telas menores */
+    }
+}
+
+
+.d-flex {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    min-width: 350px;
+}
+
+.d-flex .img {
+    margin-right: 10px;
+}
+
+.ps-product-details {
+    flex-grow: 1;
+    min-width: 0;
+    margin-bottom: 15px; /* Adjust the value as needed */
+    margin-left: 15px; /* Adjust the value for left spacing */
+}
+
+
+/* Media Query para dispositivos móveis */
+@media (max-width: 768px) {
     .ps-content .cart {
-        width: 100%; /* Full width for mobile devices */
-    }
-
-    .ps-content .cart .scrollable-area {
-        height: calc(100vh - 150px); /* Adjust height for mobile screens */
-    }
-
-    .ps-col-title h5 {
-        font-size: var(--font-size-small); /* Further decrease font size for titles */
-    }
-
-    .ps-product-name {
-        font-size: var(--font-size-small); /* Keep product name font size small */
-    }
-
-    .btn-remove {
-        font-size: var(--font-size-small); /* Keep remove button font size small */
-    }
-
-    .ps-product-quantity {
-        flex-direction: column; /* Stack quantity controls vertically */
-        align-items: flex-start; /* Align items to the start */
-    }
-
-    .quantity-input-container {
-        width: 100%; /* Full width for quantity input */
-    }
-
-    .input-quantity {
-        width: 50px; /* Adjust input width for mobile */
+        width: 100%;
     }
 }
 
-/* Additional styles for accessibility */
-:focus {
-    outline: 2px solid var(--primary-color); /* Add focus outline for accessibility */
-}
-
-.btn {
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for button hover effects */
-}
-
-.btn:hover {
-    background-color: var(--primary-color); /* Change background on hover */
-    color: var(--light-background); /* Change text color on hover */
-}
-
-/* Custom scrollbar styles */
-.ps-content .scrollable-area::-webkit-scrollbar {
-    width: 8px; /* Width of the scrollbar */
-}
-
-.ps-content .scrollable-area::-webkit-scrollbar-thumb {
-    background: var(--border-color); /* Color of the scrollbar thumb */
-    border-radius: 10px; /* Rounded corners for the scrollbar thumb */
-}
-
-.ps-content .scrollable-area::-webkit-scrollbar-track {
-    background: var(--secondary-color); /* Background of the scrollbar track */
-}
-
-
-/* End of CSS */

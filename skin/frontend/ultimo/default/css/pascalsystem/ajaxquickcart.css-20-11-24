@@ -1,0 +1,144 @@
+.pascalsystem-content .ajaxemptycart,
+.pascalsystem-content .cart {
+    width: 250px; /* Fixed width for the sliding cart */
+    padding: 7px;
+    background: #ffffff;
+    border: 0px solid #000000;
+    position: fixed;
+    top: 0; /* Position it to the top */
+    right: 0; /* Position it to the right */
+    z-index: 9999; /* Ensure this is high enough */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 0; /* Optional: remove border radius for full coverage */
+    height: 100vh; /* Set height to 100% of the viewport height */
+    overflow-y: auto; /* Allow vertical scrolling if content exceeds viewport height */
+    transition: width 0.5s; /* Smooth transition for sliding */
+}
+
+/* Example of overriding the script's elements */
+.elevio-modal {
+    z-index: 999; /* Set this lower than the sliding cart */
+}
+
+.bi-bag-check {
+    position: relative;
+    top: -2px;
+}
+
+.pascalsystem-content .cart .btn-continue {
+    margin-right: 5px;
+}
+
+.pascalsystem-content .cart .btn-viewcart {
+    float: left;
+}
+
+.pascalsystem-content .product-view-layer {
+    width: 30%;
+}
+
+#pascalsystem-cart .cart-collaterals {
+    display: none;
+}
+
+.pascalsystem-content .cart .buttons-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 300px; /* Add margin to move it lower */
+}
+
+.pascalsystem-content .cart .buttons-container .button {
+    width: 100%;
+    text-align: center;
+    margin: 5px 0;
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    border: 0px solid #dcdcdc;
+    border-radius: 0px;
+    font-size: 16px;
+    color: #333;
+    text-transform: uppercase;
+}
+
+#shopping-cart-table img {
+    width: auto;
+    height: auto;
+    max-width: 75px;
+    max-height: 75px;
+}
+
+/* Flexbox for cart items */
+.d-flex {
+    display: flex;
+    align-items: center; /* Align items vertically centered */
+}
+
+.d-flex .img {
+    margin-right: 10px; /* Space between the image and product details */
+}
+
+.product-details {
+    flex-grow: 1; /* Allow product details to take the remaining space */
+}
+
+.cart-item-image img {
+    width: 75px; /* Fixed size for product image */
+    height: 75px; /* Fixed size for product image */
+    object-fit: cover; /* Maintain image aspect ratio */
+}
+
+.btn-remove {
+    color: red; /* Color for the remove icon */
+    cursor: pointer; /* Pointer cursor for clickable items */
+}
+
+.btn-remove:hover {
+    opacity: 0.7; /* Hover effect */
+}
+
+.product-name {
+    margin-bottom: 5px; /* Space below product name */
+}
+
+.item-options {
+    margin-bottom: 10px; /* Space below item options */
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 1200px) {
+    .pascalsystem-content .ajaxemptycart,
+    .pascalsystem-content .cart {
+        width: 50%; /* Adjust width for larger screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .pascalsystem-content .ajaxemptycart,
+    .pascalsystem-content .cart {
+        width: 80%; /* Adjust width for medium screens */
+    }
+
+    .pascalsystem-content .cart .buttons-container {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pascalsystem-content .ajaxemptycart,
+    .pascalsystem-content .cart {
+        width: 90%; /* Full width for smaller screens */
+    }
+
+    .pascalsystem-content .cart .buttons-container {
+        gap: 5px;
+    }
+
+    .pascalsystem-content .cart .buttons-container .button {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+}
